@@ -1,0 +1,5 @@
+@import 'variables';
+@mixin defaultBlock() {
+  border: $border;
+  background-color: $green;
+}
