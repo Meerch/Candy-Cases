@@ -59,7 +59,7 @@ input {
 
 .container {
   margin: 0 auto;
-  width: 85%;
+  width: 90%;
 }
 
 // Balance
@@ -103,17 +103,19 @@ input {
   cursor: pointer;
   transition: linear .1s;
 
-  &:hover {
+  &:not(.selected):hover {
     transform: scale(1.05);
     background-color: darken($green, 5);
   }
-  &:active {
+  &:not(.selected):active {
     background-color: darken($green, 10);
   }
 
   &.selected {
-    transform: scale(1.1);
+    height: 58px;
+    width: 27%;
     background-color: darken($green, 15);
+    text-decoration: underline #fff;
   }
 }
 
@@ -124,3 +126,59 @@ input {
 }
 
 // Primary
+
+.primary {
+  margin-top: 40px;
+}
+
+.primary__content {
+  width: 100%;
+  height: 65vh;
+  padding: 30px 100px;
+  text-align: center;
+  @include defaultBlock();
+}
+.primary__info-title {
+  font-size: 54px;
+  letter-spacing: 2px;
+}
+
+.primary__info-text {
+  font-size: 34px;
+}
+.primary__info-rarity {
+  padding: 7px;
+  color: #000;
+  font-weight: 700;
+  &.normal {
+    background-color: $rare-1;
+  }
+  &.rare {
+    background-color: $rare-2;
+  }
+  &.epic {
+    background-color: $rare-3;
+  }
+  &.legendary {
+    background-color: $rare-4;
+  }
+}
+
+.primary__btn {
+  cursor: pointer;
+  font-size: 25px;
+  margin: 40px auto;
+  max-width: 23%;
+  padding: 10px;
+  background-color: $color-primary-btn;
+  font-weight: 700;
+  transition: all linear .2s;
+
+  &:hover {
+    transform: scale(1.03);
+    background-color: darken($color-primary-btn, 5);
+  }
+  &:active {
+    background-color: darken($color-primary-btn, 15);
+  }
+}
