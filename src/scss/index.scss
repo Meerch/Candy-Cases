@@ -182,3 +182,51 @@ input {
     background-color: darken($color-primary-btn, 15);
   }
 }
+
+// Cases
+
+.cases {
+  margin-top: 40px;
+}
+
+.cases__content {
+  width: 100%;
+  height: 65vh;
+  padding: 20px 100px;
+  text-align: center;
+  @include defaultBlock();
+}
+
+.cases__title {
+  position: relative;
+  font-size: 38px;
+
+  &:after {
+    position: absolute;
+    content: '';
+    width: 20%;
+    height: 4px;
+    background-color: $border-color;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.cases__items {
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.case {
+  width: 17%;
+  height: 250px;
+  border: 4px solid $border-color;
+}
+.case__image {
+  width: 100px;
+  height: 100px;
+}
