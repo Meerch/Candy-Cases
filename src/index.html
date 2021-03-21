@@ -1,42 +1,60 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" href="favicon.ico">
-  <title>Candy Cases</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Candy Cases</title>
 </head>
 <body>
 
-  <div id="app">
-      <div class="header">
-          <div class="container">
-              <div class="balance">
-                  <span class="balance__value">Balance: 10  candy</span>
-              </div>
-          </div>
-      </div>
-      <nav class="navigation">
-          <div class="container">
-              <div class="navigation__sections">
-                  <div class="navigation__section selected">
-                      <div class="navigation__section-name">Primary</div>
-                  </div>
-                  <div class="navigation__section">
-                      <div class="navigation__section-name">Cases</div>
-                  </div>
-                  <div class="navigation__section">
-                      <div class="navigation__section-name">Inventory</div>
-                  </div>
-                  <div class="navigation__section">
-                      <div class="navigation__section-name">Free</div>
-                  </div>
-              </div>
-          </div>
-      </nav>
-  </div>
+<div id="app">
+    <div class="header">
+        <div class="container">
+            <div class="balance">
+                <span class="balance__value">Balance: 10  candy</span>
+            </div>
+        </div>
+    </div>
+    <nav class="navigation">
+        <div class="container">
+            <div class="navigation__sections">
+                <div class="navigation__section selected">
+                    <div class="navigation__section-name">Primary</div>
+                </div>
+                <div class="navigation__section">
+                    <div class="navigation__section-name">Cases</div>
+                </div>
+                <div class="navigation__section">
+                    <div class="navigation__section-name">Inventory</div>
+                </div>
+                <div class="navigation__section">
+                    <div class="navigation__section-name">Free</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="primary">
+        <div class="container">
+            <div class="primary__content">
+                <div class="primary__info">
+                    <div class="primary__info-title">Welcome</div>
+                    <br/>
+                    <div class="primary__info-text">On this site, you can open boxes and win prizes. There are 4 rarity
+                        prizes: <span class="primary__info-rarity normal">Normal</span> & <span
+                                class="primary__info-rarity rare">Rare</span> & <span class="primary__info-rarity epic">Epic</span>
+                        & <span class="primary__info-rarity legendary">Legendary</span> rarity. Cases can be opened for
+                        the fictional currency CANDY. If you run out of CANDY, you can get them for free in the Free
+                        section.
+                    </div>
+                </div>
+                <div class="primary__btn">Start opening case</div>
+            </div>
+        </div>
+    </section>
+</div>
 
 </body>
 </html>

@@ -48,12 +48,11 @@ input {
 }
 
 
-
 #app {
   height: 100vh;
   width: 100vw;
-  background: rgb(243,118,74);
-  background: linear-gradient(180deg, rgba(243,118,74,1) 0%, rgba(243,167,54,1) 100%);
+  background: rgb(243, 118, 74);
+  background: linear-gradient(180deg, rgba(243, 118, 74, 1) 0%, rgba(243, 167, 54, 1) 100%);
   overflow: hidden;
 }
 
@@ -87,6 +86,7 @@ input {
 .navigation {
   margin-top: 40px;
 }
+
 .navigation__sections {
   display: flex;
   flex-wrap: nowrap;
@@ -107,6 +107,7 @@ input {
     transform: scale(1.05);
     background-color: darken($green, 5);
   }
+
   &:not(.selected):active {
     background-color: darken($green, 10);
   }
@@ -132,12 +133,38 @@ input {
 }
 
 .primary__content {
+  position: relative;
   width: 100%;
   height: 65vh;
   padding: 30px 100px;
   text-align: center;
   @include defaultBlock();
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 120px;
+    height: 120px;
+    background: url("../assets/cases/case-1.png");
+    background-size: cover;
+    top: -4%;
+    left: -3.5%;
+    transform: rotate(-30deg);
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    width: 120px;
+    height: 120px;
+    background: url("../assets/cases/case-7.png");
+    background-size: cover;
+    bottom: -2%;
+    right: -3.5%;
+    transform: rotate(20deg);
+  }
 }
+
 .primary__info-title {
   font-size: 54px;
   letter-spacing: 2px;
@@ -146,19 +173,24 @@ input {
 .primary__info-text {
   font-size: 34px;
 }
+
 .primary__info-rarity {
   padding: 7px;
   color: #000;
   font-weight: 700;
+
   &.normal {
     background-color: $rare-1;
   }
+
   &.rare {
     background-color: $rare-2;
   }
+
   &.epic {
     background-color: $rare-3;
   }
+
   &.legendary {
     background-color: $rare-4;
   }
@@ -178,6 +210,7 @@ input {
     transform: scale(1.03);
     background-color: darken($color-primary-btn, 5);
   }
+
   &:active {
     background-color: darken($color-primary-btn, 15);
   }
