@@ -56,6 +56,10 @@ input {
   overflow: hidden;
 }
 
+.candy-cases {
+  all: inherit;
+}
+
 .container {
   margin: 0 auto;
   width: 90%;
@@ -92,9 +96,9 @@ input {
   width: 20px;
 }
 
-// Balance
+// balance
 
-.balance {
+.balance__content {
   display: flex;
   border: $border;
   margin: 40px auto 0;
@@ -112,7 +116,7 @@ input {
   letter-spacing: 2px;
 }
 
-// Navigation
+// navigation
 
 .navigation {
   margin-top: 40px;
@@ -133,6 +137,7 @@ input {
   height: 50px;
   cursor: pointer;
   transition: linear .1s;
+  outline: none;
 
   &:not(.selected):hover {
     transform: scale(1.05);
@@ -155,6 +160,7 @@ input {
   margin: auto;
   font-size: 25px;
   letter-spacing: 2px;
+  color: #fff;
 }
 
 // Primary
