@@ -65,6 +65,24 @@ input {
   width: 90%;
 }
 
+// Rarity
+
+[data-rarity="normal"] {
+  background-color: $rare-1;
+}
+
+[data-rarity="rare"] {
+  background-color: $rare-2;
+}
+
+[data-rarity="epic"] {
+  background-color: $rare-3;
+}
+
+[data-rarity="legendary"] {
+  background-color: $rare-4;
+}
+
 
 // Scroll
 
@@ -386,12 +404,39 @@ input {
   flex-direction: column;
 }
 
+.case-inner__come-back {
+  width: 15%;
+  font-weight: 700;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  outline: none;
+  background-color: #fff;
+  border: 2px solid darken($green, 15);
+  color: darken($green, 15);
+  transition: all linear .1s;
+  margin-bottom: 30px;
+
+  &:hover {
+    color: #fff;
+    background-color: darken($green, 5);
+    border: 2px solid darken($green, 20);
+  }
+
+  &:active {
+
+    background-color: darken($green, 15);
+  }
+}
+
 .case-inner__image {
   margin: 0 auto;
   width: 10%;
+  display: flex;
 }
 
 .case-inner__icon {
+  margin: auto;
   border: 4px solid #fff;
   padding: 13%;
   max-width: 100%;
@@ -495,6 +540,10 @@ input {
     margin-right: 0;
   }
 
+  &.selected {
+    border: 3px solid #fff;
+  }
+
   &.sell {
     width: 210px;
   }
@@ -520,6 +569,20 @@ input {
   flex-direction: row;
   overflow: auto;
   margin-top: 40px;
+  position: relative;
+  z-index: 10;
+
+  &.clear:after {
+    content: 'There are no prizes yet';
+    font-size: 50px;
+    color: #fff;
+    margin: 100px auto;
+    //position: absolute;
+    //z-index: 30;
+    //left: 50%;
+    //top: 50%;
+    //transform: translate(-50%, -50%);
+  }
 }
 
 .inventory__item {
@@ -534,7 +597,7 @@ input {
   border: 4px solid #fff;
   cursor: pointer;
   font-weight: 700;
-  
+
   &:hover {
     .inventory__item-sell {
       display: block;
@@ -543,6 +606,11 @@ input {
 
   &.rare-1 {
     background-color: $rare-1;
+
+    .inventory__item-price,
+    .inventory__item-name {
+      color: black;
+    }
   }
 
   &.rare-2 {
@@ -550,7 +618,7 @@ input {
 
     .inventory__item-price,
     .inventory__item-name {
-      color: black;
+      color: #fff;
     }
   }
 
@@ -560,6 +628,11 @@ input {
 
   &.rare-4 {
     background-color: $rare-4;
+
+    .inventory__item-price,
+    .inventory__item-name {
+      color: black;
+    }
   }
 
   &.rare-1:hover {
@@ -602,8 +675,9 @@ input {
 }
 
 .inventory__item-name {
-  font-size: 21px;
+  font-size: 18px;
   margin-top: 10px;
+  font-weight: 700;
 }
 
 .inventory__item-icon {
@@ -655,7 +729,7 @@ input {
 }
 
 .free__button {
-  margin:  40px auto 0;
+  margin: 40px auto 0;
   font-size: 20px;
   background-color: $red;
   width: 16%;
@@ -672,4 +746,947 @@ input {
 .free__button--text {
   margin: auto;
   letter-spacing: 1px;
+}
+
+// Spinner
+
+
+.spin {
+  border: 4px solid #fff;
+  height: 125px;
+  width: 85%;
+  transition: all linear .15s;
+}
+
+.spinner {
+  margin: 0 auto;
+  width: 100%;
+  // overflow: hidden;
+  overflow: hidden;
+  position: relative;
+
+
+}
+
+.spinner__pointer {
+  content: '';
+  position: absolute;
+  border: 12px solid transparent;
+  border-top: 12px solid #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.spinner__prizes {
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  flex-direction: row;
+  left: 0;
+  z-index: 7;
+  //transition: left 1s linear;
+}
+
+.spinner__prize {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  border-right: 4px solid #fff;
+  flex-shrink: 0;
+}
+
+
+.spinner__prize-image {
+  margin: auto;
+  width: 100%;
+  height: auto;
+  padding: 22px;
+}
+
+// inner-case - window get-sell prize
+
+.inner-case__prize {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  height: 500px;
+  background-color: darken(rgba(20, 167, 151, 0.99), 25);
+  z-index: 100;
+  border: 4px solid #fff;
+  padding: 33px;
+}
+
+.inner-case__prize-header {
+  margin: 5px auto 0;
+  font-size: 35px;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.inner-case__prize-title {
+  width: 100%;
+  text-align: center;
+}
+
+.inner-case__prize-image {
+  margin: 35px auto 0;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  border: 3px solid #fff;
+}
+
+.inner-case__prize-icon {
+  margin: auto;
+  width: 60%;
+  padding: 7px;
+  height: auto;
+}
+
+.inner-case__prize-price {
+  display: flex;
+  margin: 0 auto;
+  width: 200px;
+  padding: 5px 0;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
+  border-left: 3px solid #fff;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.inner-case__prize-text {
+  color: black;
+  font-weight: 700;
+  font-size: 23px;
+  letter-spacing: 1px;
+  margin: auto;
+}
+
+.inner-case__prize-buttons {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.inner-case__prize-button {
+  width: 140px;
+  height: auto;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 10px;
+  background-color: rgba(1, 1, 1, 0.4);
+
+
+  &.close {
+    background-color: rgba(1, 1, 1, 0);
+    font-size: 30px;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    color: $red;
+
+    &:hover {
+      color: darken($red, 8);
+    }
+
+  }
+
+  &.sell,
+  &.get {
+    border: 2px solid #fff;
+    padding: 4px;
+  }
+
+  &.sell {
+    background-color: $red;
+
+    &:hover {
+      background-color: darken($red, 6);
+    }
+  }
+
+  &.get {
+    background-color: $orange;
+
+    &:hover {
+      background-color: darken($orange, 8);
+    }
+  }
+}
+
+
+// Notification
+
+.notification {
+  font-size: 22px;
+  width: 280px;
+  height: 80px;
+  position: absolute;
+  display: flex;
+  left: 50px;
+  top: 30px;
+  background-color: rgba($purple, 0.86);
+  color: #fff;
+  transition: opacity 1.5s linear, left .2s linear;
+  border: 1px solid #fff;
+}
+
+.notification__text {
+  margin: auto;
+}
+
+// Media
+
+@media screen and (min-device-width: 1601px) and (max-device-width: 1920px) {
+
+  .cases__content {
+    height: 72vh;
+    padding: 35px 100px 10px;
+  }
+
+  .inventory__content {
+    height: 72vh;
+    padding: 60px 75px;
+  }
+
+  .case-inner__content {
+    height: 72vh;
+    padding: 70px 80px;
+  }
+
+  .free__content {
+    height: 72vh;
+    padding: 20px 100px;
+  }
+
+  .case-inner__content {
+    height: 72vh;
+  }
+
+  .primary__content {
+    height: 65vh;
+    padding: 75px 160px;
+  }
+
+
+  .balance__content {
+    width: 410px;
+    height: 60px;
+    font-size: 29px;
+  }
+
+  .navigation__section {
+    border: 4px solid #fff;
+    width: 22%;
+    height: 67px;
+  }
+
+  .navigation__section-name {
+    font-size: 31px;
+  }
+
+  .navigation__section.selected {
+    height: 72px;
+    width: 27%;
+  }
+
+
+  .primary__info-title {
+    font-size: 72px;
+  }
+
+  .primary__info-text {
+    font-size: 42px;
+  }
+
+  .primary__btn {
+    font-size: 27px;
+    margin: 60px auto 0;
+    max-width: 24%;
+    padding: 17px;
+  }
+
+  .primary__content:before {
+    width: 140px;
+    height: 140px;
+    top: -2%;
+  }
+
+  .primary__content:after {
+    width: 140px;
+    height: 140px;
+    bottom: -5%;
+  }
+
+  .case__price {
+    padding: 5px 10px;
+    font-size: 27px;
+  }
+
+
+  .case-inner__come-back {
+    padding: 11px;
+    font-size: 17px;
+  }
+
+  .possible-loot {
+    margin-top: 50px;
+    height: 65%;
+  }
+
+  .spin {
+    height: 160px;
+    width: 95%;
+  }
+
+  .spinner__pointer {
+    border: 18px solid transparent;
+    border-top: 18px solid #fff;
+  }
+
+  .spinner__prize-image {
+    padding: 35px;
+  }
+
+  .case-inner__button {
+    margin: 45px auto 0;
+    background-color: #f25252;
+    border: 2px solid #fff;
+    width: 17%;
+    padding: 0.7%;
+    font-size: 1.2vw;
+  }
+
+  .possible-loot {
+    margin-top: 60px;
+  }
+
+  .possible-loot__title {
+    font-size: 30px;
+  }
+
+  .possible-loot__item {
+    padding: 15px;
+    height: 85px;
+    width: 85px;
+  }
+
+  .inner-case__prize {
+    width: 680px;
+    height: 570px;
+    background-color: rgba(6, 53, 48, 0.99);
+    z-index: 100;
+    border: 4px solid rgb(255, 255, 255);
+    padding: 33px;
+  }
+
+  .inner-case__prize-button.sell,
+  .inner-case__prize-button.get {
+    padding: 5px;
+  }
+
+  .inventory__utilities-button {
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    margin-right: 35px;
+  }
+
+  .inventory__items {
+    margin-top: 45px;
+  }
+
+  .inventory__item {
+    width: 10%;
+    height: auto;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    border: 4px solid #fff;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .free__title {
+    font-size: 35px;
+    margin-top: 130px;
+  }
+
+  .free__button {
+    font-size: 29px;
+    height: 50px;
+  }
+
+}
+
+
+@media (max-width: 1280px) {
+
+  .primary__btn {
+    max-width: 33%;
+    margin: 15px auto;
+  }
+
+  .case-inner__come-back {
+    width: 20%;
+  }
+
+
+  .case-inner__image {
+
+    width: 13%;
+
+    &.spin {
+      width: 95%;
+    }
+  }
+
+  .case-inner__content {
+    padding: 40px 50px 20px;
+  }
+
+  .case-inner__button {
+    margin: 22px auto 0;
+    width: 20%;
+    padding: 0.8%;
+  }
+
+  .free__case-image {
+    width: 22%;
+    padding: 23px 50px;
+  }
+
+  .free__case {
+
+    &.spin {
+      width: 100%;
+    }
+  }
+
+  .free__button {
+    width: 19%;
+  }
+
+  .inventory__item-name {
+    font-size: 15px;
+  }
+
+  .inventory__item-price {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .primary__btn {
+    max-width: 43%;
+  }
+
+  .primary__content {
+    padding: 20px 80px;
+  }
+
+  .case {
+    width: 20%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+  }
+
+  .case-inner__image {
+    width: 16%;
+  }
+
+  .case-inner__button {
+    font-size: 19px;
+    margin: 22px auto 0;
+    width: 25%;
+    padding: 1%;
+  }
+
+  .spinner__prize {
+    width: 13%;
+  }
+
+  .inventory__item {
+    width: 15%;
+    margin-right: 35px;
+    margin-bottom: 35px;
+  }
+
+  .free__case-image {
+    width: 30%;
+    padding: 25px 50px;
+  }
+
+  .free__button {
+    width: 23%;
+  }
+
+  .notification {
+    font-size: 22px;
+    width: 260px;
+    height: 70px;
+    left: 30px;
+    top: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .navigation__sections {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & > button:nth-last-of-type(-n+2) {
+      margin-bottom: 0;
+    }
+  }
+
+  .navigation__section {
+    width: 48%;
+    margin-bottom: 20px;
+    height: 50px;
+
+    &.selected {
+      height: 58px;
+      width: 50%;
+    }
+  }
+
+  .navigation__section-name {
+    font-size: 25px;
+    letter-spacing: 2px;
+  }
+
+  .navigation {
+    margin-top: 30px;
+  }
+
+  .primary__content {
+    padding: 20px 60px;
+  }
+
+  .primary__info-text {
+    font-size: 31px;
+  }
+
+  .primary__info-rarity {
+    padding: 5px;
+    color: #000;
+    font-weight: 700;
+  }
+
+  .primary__info-title {
+    font-size: 45px;
+    letter-spacing: 2px;
+  }
+
+  .primary__content:before,
+  .primary__content:after {
+    width: 100px;
+    height: 100px;
+  }
+
+
+  .primary__btn {
+    max-width: 61%;
+    margin: 25px auto;
+  }
+
+  .cases__content {
+    padding: 20px 40px 20px 50px;
+  }
+
+  .case {
+    width: 45%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+  }
+
+  .case__price {
+    padding: 3px 10px;
+    font-size: 28px;
+  }
+
+  .case-inner__come-back {
+    width: 40%;
+    padding: 6px;
+  }
+
+  .case-inner__image {
+    width: 30%;
+  }
+
+  .case-inner__button {
+    margin: 24px auto 0;
+    width: 42%;
+    padding: 1.4%;
+    font-size: 20px;
+  }
+
+  .possible-loot__items {
+    margin-top: 20px;
+  }
+
+  .spinner__prize {
+    width: 22%;
+  }
+
+  .inventory__content {
+    padding: 40px 30px 25px 50px;
+  }
+
+  .inventory__item {
+    width: 26%;
+    margin-right: 25px;
+    margin-bottom: 25px;
+  }
+
+  .inventory__item-name {
+    font-size: 20px;
+  }
+
+  .inventory__item-icon {
+    width: 60%;
+  }
+
+  .inventory__item-sell {
+    width: 60px;
+    max-width: 60px;
+    padding-top: 4%;
+    padding-bottom: 4%;
+  }
+
+  .free__title {
+    margin-top: 25px;
+    font-size: 30px;
+  }
+
+  .free__case-image {
+    width: 60%;
+    padding: 25px 50px;
+  }
+
+  .free__button {
+    margin: 40px auto 0;
+    font-size: 25px;
+    width: 45%;
+    height: 45px;
+  }
+
+  .free__content {
+    width: 100%;
+    height: 65vh;
+    padding: 20px 50px;
+    text-align: center;
+    border: 4px solid #fff;
+    background-color: #14a797;
+    overflow: auto;
+  }
+
+  .spinner__pointer {
+    border: 14px solid transparent;
+    border-top: 14px solid #fff;
+  }
+
+  .notification {
+    font-size: 23px;
+    width: 280px;
+    height: 80px;
+    left: 20px;
+    top: 90%;
+  }
+}
+
+@media (max-width: 440px) {
+  .balance__content {
+    margin: 30px auto 0;
+    width: 300px;
+    height: 50px;
+    font-size: 23px;
+  }
+
+  .navigation__section {
+    width: 48%;
+    height: 35px;
+    margin-bottom: 14px;
+
+    &.selected {
+      height: 37px;
+      width: 50%;
+    }
+  }
+
+  .navigation__section-name {
+    font-size: 19px;
+  }
+  .navigation {
+    margin-top: 19px;
+  }
+
+  .primary,
+  .inventory,
+  .cases,
+  .inner-case,
+  .free {
+    margin-top: 30px;
+  }
+
+  .primary__info-title {
+    font-size: 35px;
+    letter-spacing: 2px;
+  }
+
+  .primary__content {
+    padding: 20px 40px;
+  }
+
+  .primary__info-text {
+    font-size: 20px;
+  }
+
+  .primary__content:before,
+  .primary__content:after {
+    width: 60px;
+    height: 60px;
+  }
+
+  .primary__btn {
+    font-size: 15px;
+    max-width: 170px;
+    margin: 20px auto;
+    padding: 5px;
+  }
+
+  .cases__content {
+    padding: 15px 20px 20px 25px;
+  }
+
+  .cases__items {
+    margin-top: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .cases__title {
+    font-size: 30px;
+  }
+
+  .case {
+    width: 44%;
+    margin-right: 6%;
+    margin-bottom: 6%;
+  }
+
+  .case__price {
+    padding: 0 10px;
+    font-size: 18px;
+  }
+
+  .case-inner__content {
+    padding: 25px 30px 20px;
+  }
+
+  .case-inner__come-back {
+    font-size: 12px;
+    width: 50%;
+    padding: 5px;
+  }
+
+  .case-inner__image {
+    width: 43%;
+  }
+
+  .case-inner__button {
+    margin: 24px auto 0;
+    width: 42%;
+    padding: 1.1%;
+    font-size: 15px;
+  }
+
+  .possible-loot__title {
+    font-size: 19px;
+  }
+
+  .possible-loot__items {
+    margin-top: 13px;
+  }
+
+  .possible-loot__item {
+    margin-right: 3%;
+    margin-bottom: 3%;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid #fff;
+    height: 50px;
+    width: 50px;
+  }
+
+  .spin {
+    height: 95px;
+  }
+
+  .spinner__prize {
+    width: 33%;
+  }
+
+  .inner-case__prize {
+    width: 285px;
+    height: 350px;
+    padding: 20px;
+  }
+
+  .inner-case__prize-header {
+    margin: 5px auto 0;
+    font-size: 25px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .inner-case__prize-button.close {
+    font-size: 30px;
+    right: -15px;
+    top: 16px;
+    color: #f25252;
+  }
+
+  .inner-case__prize-button {
+    width: 90px;
+    height: auto;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    background-color: rgba(1, 1, 1, 0.4);
+  }
+
+  .inner-case__prize-image {
+    margin: 25px auto 0;
+    width: 140px;
+    height: 140px;
+  }
+
+  .inner-case__prize-price {
+    display: flex;
+    margin: 0 auto;
+    width: 140px;
+    padding: 0;
+    background-color: white;
+  }
+
+  .inner-case__prize-text {
+    font-size: 18px;
+  }
+
+  .inner-case__prize-icon {
+    margin: auto;
+    width: 65%;
+    padding: 7px;
+    height: auto;
+  }
+
+  .inner-case__prize-buttons {
+    height: 70px;
+    margin-top: 10px;
+  }
+
+  .inventory__content {
+    padding: 25px 20px 25px 30px;
+  }
+
+  .inventory__utilities-button {
+    font-size: 16px;
+    letter-spacing: 1px;
+    height: 25px;
+    width: 25px;
+    margin-right: 15px;
+
+    &.sell {
+      width: 150px;
+    }
+
+    &.selected {
+      border: 2px solid #fff;
+    }
+
+  }
+
+  .inventory__items.clear:after {
+    content: 'There are no prizes yet';
+    font-size: 27px;
+    color: #fff;
+    margin: 100px auto;
+  }
+
+  .inventory__utilities-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .inventory__item-name {
+    font-size: 15px;
+  }
+
+  .inventory__item-icon {
+    width: 50%;
+  }
+
+  .inventory__item-price {
+    font-size: 15px;
+  }
+
+  .inventory__item {
+    width: 39%;
+    margin-right: 25px;
+    margin-bottom: 25px;
+    border: 3px solid #fff;
+  }
+
+  .free__content {
+    padding: 20px 35px;
+  }
+
+  .free__title {
+    margin-top: 10px;
+    font-size: 25px;
+  }
+
+  .free__button {
+    margin: 30px auto 0;
+    font-size: 19px;
+    width: 45%;
+    height: 35px;
+  }
+
+  .free__case {
+    margin: 40px auto;
+  }
+
+  .free__case-image {
+    width: 60%;
+    padding: 15px 30px;
+  }
+
+  .notification {
+    font-size: 17px;
+    width: 210px;
+    height: 50px;
+    left: 10px;
+    top: 91%;
+  }
 }
