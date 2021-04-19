@@ -6,16 +6,22 @@ import {Primary} from "./components/primary/Primary";
 import {Cases} from "./components/cases/Cases";
 import {Free} from "./components/free/Free";
 import {Inventory} from "./components/inventory/Inventory";
+import {InnerCase} from "./components/inner-case/Inner-case";
+import {storage} from "./core/utils";
 
-
-let app = new App('#app', {
-    components: [Balance, Navigation, Primary],
-    optionalComponents: {
+document.addEventListener("DOMContentLoaded", () => {
+    const optionalComponents = {
         cases: Cases,
         free: Free,
         inventory: Inventory,
-        primary: Primary
+        primary: Primary,
+        innerCase: InnerCase
     }
+
+    let app = new App('#app', {
+        components: [Balance, Navigation, optionalComponents[storage('currentSection')] || Primary],
+        optionalComponents
+    })
+    app.render()
 })
-app.render()
-// app.emitter.subscribe('work', () => app.render())
+

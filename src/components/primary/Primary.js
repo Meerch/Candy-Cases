@@ -1,4 +1,5 @@
 import {AppComponent} from "../../core/AppComponent";
+import {attr} from "../../core/utils";
 
 export class Primary extends AppComponent {
 
@@ -29,11 +30,10 @@ export class Primary extends AppComponent {
     }
 
     onClick(event) {
-        const target = event.target
+        const $target = event.target
         const section = 'cases'
-        if (target.getAttribute('data-button') === 'open-cases') {
+        if (attr($target, 'data-button') === 'open-cases') {
             this.$emit('renderNewSection', section)
-            // console.log(changeSelectedSection(target))
             this.$emit('changeSelectedSection', section)
         }
     }

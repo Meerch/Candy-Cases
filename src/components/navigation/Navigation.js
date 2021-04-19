@@ -1,4 +1,5 @@
 import {AppComponent} from "../../core/AppComponent";
+import {attr, storage} from "../../core/utils";
 
 export class Navigation extends AppComponent {
     static className = 'navigation'
@@ -41,7 +42,6 @@ export class Navigation extends AppComponent {
     }
 
     changeSelectedSection(target) {
-        console.log('work nav')
         const navigation = document.querySelectorAll('[data-section]')
         const section = document.querySelector(`[data-section="${target}"]`)
 
@@ -52,14 +52,14 @@ export class Navigation extends AppComponent {
     }
 
     onClick(event) {
-        const target = event.target.getAttribute('data-section') ||
-                       event.target.parentElement.getAttribute('data-section')
+        const target = attr(event.target, 'data-section') ||
+            attr(event.target.parentElement, 'data-section')
+
         if (target) {
-            // console.log(target)
+            storage('currentSection', target)
             this.$emit('renderNewSection', target)
             this.changeSelectedSection(target)
         }
 
     }
-
 }

@@ -23,6 +23,7 @@
     "linebreak-style": "off",
     "eol-last": "off",
     "operator-linebreak": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "no-invalid-this": "off"
   }
 }

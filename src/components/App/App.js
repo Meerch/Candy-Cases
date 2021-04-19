@@ -1,4 +1,6 @@
 import {Emitter} from "../../core/Emitter";
+import {storage} from "../../core/utils";
+import {createNotification} from "../notification/notifications";
 
 export class App {
     constructor(selector, options) {
@@ -8,6 +10,8 @@ export class App {
         this.componentsInstance = []
         this.emitter = new Emitter()
         this.unsubs = []
+        this.currentCase = null
+        this.startBalance = 50
     }
 
     getRoot() {
@@ -16,7 +20,9 @@ export class App {
         $root.classList.add('candy-cases')
 
         const componentOptions = {
-            emitter: this.emitter
+            emitter: this.emitter,
+            currentCase: this.currentCase,
+            balance: localStorage.getItem('balance') || this.startBalance
         }
 
         this.components.forEach(Component => {
@@ -32,9 +38,9 @@ export class App {
     }
 
 
-    render() {
-        this.$el.innerHTML = ''
-        this.unsubs.forEach(unsub => unsub())
+    sub() {
+        this.unsubs.push(this.emitter.subscribe('addData', (nameData, data) => this[nameData] = data || null))
+        this.unsubs.push(this.emitter.subscribe('createNotification', text => createNotification(this.$el, text)))
         this.unsubs.push(this.emitter.subscribe('renderNewSection', newSection => {
             this.componentsInstance.forEach(instanceComponent => instanceComponent.destroy())
             const component = this.optionalComponents[newSection]
@@ -42,9 +48,15 @@ export class App {
             this.components.push(component)
             this.render(component)
         }))
+    }
+
+    render() {
+        this.$el.innerHTML = ''
+        this.unsubs.forEach(unsub => unsub())
+        this.sub()
+
         this.$el.append(this.getRoot())
-
-
         this.componentsInstance.forEach(component => component.init())
+        this.emitter.emit('changeSelectedSection', storage('currentSection') || 'primary')
     }
 }
