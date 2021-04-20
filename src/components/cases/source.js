@@ -20,7 +20,7 @@ const rarity = [
         color: '#F2E252'
     },
 ]
-const srcPrizes = 'src/assets/prizes'
+const srcPrizes = 'assets/prizes'
 
 const prizes = [
     {
@@ -308,7 +308,7 @@ const prizes = [
 export const cases = [
     {
         id: 1,
-        image: "src/assets/cases/case-1.png",
+        image: "assets/cases/case-1.png",
         price: 10,
         prizes: [
             {
@@ -383,7 +383,7 @@ export const cases = [
     },
     {
         id: 2,
-        image: "src/assets/cases/case-2.png",
+        image: "assets/cases/case-2.png",
         price: 32,
         prizes: [
             {
@@ -434,7 +434,7 @@ export const cases = [
     },
     {
         id: 3,
-        image: "src/assets/cases/case-3.png",
+        image: "assets/cases/case-3.png",
         price: 64,
         prizes: [
             {
@@ -493,7 +493,7 @@ export const cases = [
     },
     {
         id: 4,
-        image: "src/assets/cases/case-4.png",
+        image: "assets/cases/case-4.png",
         price: 104,
         prizes: [
             {
@@ -556,7 +556,7 @@ export const cases = [
     },
     {
         id: 5,
-        image: "src/assets/cases/case-5.png",
+        image: "assets/cases/case-5.png",
         price: 220,
         prizes: [
             {
@@ -584,7 +584,7 @@ export const cases = [
     },
     {
         id: 6,
-        image: "src/assets/cases/case-6.png",
+        image: "assets/cases/case-6.png",
         price: 30,
         prizes: [
             {
@@ -599,7 +599,7 @@ export const cases = [
     },
     {
         id: 7,
-        image: "src/assets/cases/free.png",
+        image: 'assets/cases/free.png',
         price: 0,
         prizes: [
             {

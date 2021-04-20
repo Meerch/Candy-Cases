@@ -28,10 +28,10 @@ export class Inventory extends AppComponent {
                             <span class="inventory__utilities-name">Sell everything</span>
                         </button>
                         <button class="inventory__utilities-button descending ${storage('conditionDescending') ? 'selected' : ''}" data-button="sort-descending">
-                            <img src="src/assets/utilities/descending.png" alt="" class="inventory__utilities-icon">
+                            <img src="assets/utilities/descending.png" alt="" class="inventory__utilities-icon">
                         </button>
                         <button class="inventory__utilities-button ascending ${storage('conditionAscending') ? 'selected' : ''}" data-button="sort-ascending">
-                            <img src="src/assets/utilities/ascending.png" alt="" class="inventory__utilities-icon">
+                            <img src="assets/utilities/ascending.png" alt="" class="inventory__utilities-icon">
                         </button>
                     </div>
                     <div class="inventory__items ${storage('inventory').length === 0 ? 'clear' : ''}" data-type="inventory" >
